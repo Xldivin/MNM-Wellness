@@ -4,7 +4,7 @@ import nodemailer from 'nodemailer';
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     try {
-      const { email, message } = req.body;
+      const { email, message, firstName, lastName, phoneNumber } = req.body;
 
       let transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -17,8 +17,13 @@ export default async function handler(req, res) {
       let mailOptions = {
         from: email,
         to: 'xldivin@gmail.com',
-        subject: 'New message from contact form',
-        text: message
+        subject: 'New message from MNM Wellness App',
+        html: `
+        <p><strong>From:</strong> ${firstName} ${lastName} &lt;${email}&gt;</p>
+        <p><strong>Phone Number:</strong> ${phoneNumber}</p>
+        <p><strong>Message:</strong></p>
+        <p>${message}</p>
+      `
       };
       await transporter.sendMail(mailOptions);
       

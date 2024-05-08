@@ -16,6 +16,7 @@ function SubscribeForm() {
     firstName: '',
     lastName: '',
     email: '',
+    phoneNumber: '',
     message: ''
   });
   const [loading, setLoading] = useState(false);
@@ -37,6 +38,7 @@ function SubscribeForm() {
         firstName: '',
         lastName: '',
         email: '',
+        phoneNumber: '',
         message: ''
       });
       toast.success('Email sent successfully!');
@@ -44,12 +46,12 @@ function SubscribeForm() {
       console.error('Error sending email:', error);
       alert('Error sending email. Please try again later.');
     }
-    setLoading(false); // Set loading state to false after submission
+    setLoading(false);
   }
 
   return (
     <div>
-       <ToastContainer />
+      <ToastContainer />
       <div className={classes.root}>
         <Parallax strength={300}>
           <div className={classes.parallaxWrap} />
@@ -76,7 +78,7 @@ function SubscribeForm() {
               <TextField
                 className={classes.field}
                 variant="filled"
-                sx={{ width: { xsDown: '10rem', xs: '15rem', sm: '28rem', md: '13.5rem', lg: '15rem' } }}
+                sx={{ width: { xs: '15rem', sm: '28rem', md: '13.5rem', lg: '15rem' } }}
                 label={"Lastname"}
                 placeholder={"Enter second name"}
                 name="lastName"
@@ -87,12 +89,23 @@ function SubscribeForm() {
               <TextField
                 className={classes.field}
                 variant="filled"
-                sx={{ width: { xs: '15rem', sm: '28rem', md: '28rem', lg: '31.5rem' } }}
+                sx={{ width: { xs: '15rem', sm: '28rem', md: '13.5rem', lg: '15rem' } }}
                 label={"Email"}
                 placeholder={"Enter Email"}
                 name="email"
                 onChange={handleChange}
                 value={formData.email}
+                required
+              />
+              <TextField
+                className={classes.field}
+                sx={{ width: { xs: '15rem', sm: '28rem', md: '13.5rem', lg: '15rem' } }}
+                label='Phone Number'
+                placeholder={"Phone Number"}
+                variant="filled"
+                name='phoneNumber'
+                onChange={handleChange}
+                value={formData.phoneNumber}
                 required
               />
               <TextField
@@ -108,12 +121,12 @@ function SubscribeForm() {
                 value={formData.message}
                 required
               />
-              <Button 
-                type="submit" 
-                variant="contained" 
-                size="large" 
+              <Button
+                type="submit"
+                variant="contained"
+                size="large"
                 color="primary"
-                disabled={loading} // Disable button while loading
+                disabled={loading}
               >
                 {loading ? 'Submitting...' : 'Submit'}
               </Button>
