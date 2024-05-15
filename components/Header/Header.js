@@ -6,14 +6,9 @@ import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Container from '@mui/material/Container';
-import AnchorLink from 'react-anchor-link-smooth-scroll';
 import Scrollspy from 'react-scrollspy';
 import { useTranslation } from 'next-i18next';
-import Settings from './Settings';
 import MobileMenu from './MobileMenu';
-import logo from 'public/images/education-logo.svg';
-import brand from 'public/text/brand';
-import routeLink from 'public/text/link';
 import useStyles from './header-style';
 import Link from '../Link';
 
@@ -24,6 +19,7 @@ function Header(props) {
   const isTablet = useMediaQuery(theme.breakpoints.down('lg'));
   const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const [scrollPosition, setScrollPosition] = useState(0);
 
   const [fixed, setFixed] = useState(false);
   let flagFixed = false;
@@ -38,6 +34,19 @@ function Header(props) {
   };
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
+  }, []);
+
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const position = window.scrollY;
+      setScrollPosition(position);
+    };
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
   const { classes, cx } = useStyles();
   const {
@@ -89,6 +98,11 @@ function Header(props) {
             <nav className={cx(classes.navMenu, invert && classes.invert)}>
               {isDesktop && (
                 <Scrollspy>
+                  {scrollPosition > 100 ? (
+                    <img src="/images/blue.png" alt="logo1" style={{ width: '3rem', height: "3rem"}} />
+                  ) : (
+                    <img src="/images/white.png" alt="artwork" style={{ width: '3rem', height: "3rem" }} />
+                  )}
                   {menuList.map(item => (
                     <li>
                       <Button component={Link} to={item.toLowerCase()}>
