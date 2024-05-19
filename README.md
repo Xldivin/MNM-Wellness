@@ -1,12 +1,6 @@
-# `education-theme`
+# `mnm-wellness`
 
 > TODO: description
-
-## Installation
-
-```
-lerna bootstrap
-```
 
 ## Run Development
 

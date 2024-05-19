@@ -11,7 +11,8 @@ import { useTranslation } from 'next-i18next';
 import MobileMenu from './MobileMenu';
 import useStyles from './header-style';
 import Link from '../Link';
-
+import Logo1 from '../../public/images/blue.png';
+import Logo2 from '../../public/images/white.png';
 
 function Header(props) {
   // Theme breakpoints
@@ -99,9 +100,9 @@ function Header(props) {
               {isDesktop && (
                 <Scrollspy>
                   {scrollPosition > 100 ? (
-                    <img src="/images/blue.png" alt="logo1" style={{ width: '3rem', height: "3rem"}} />
+                    <img src={Logo1} alt="logo1" style={{ width: '3rem', height: "3rem"}} />
                   ) : (
-                    <img src="/images/white.png" alt="artwork" style={{ width: '3rem', height: "3rem" }} />
+                    <img src={Logo2} alt="artwork" style={{ width: '3rem', height: "3rem" }} />
                   )}
                   {menuList.map(item => (
                     <li>

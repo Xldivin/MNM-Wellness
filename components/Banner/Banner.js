@@ -8,6 +8,7 @@ import { useSpring } from 'react-spring';
 import { useTranslation } from 'next-i18next';
 import { useText } from 'theme/common';
 import useStyles from './banner-style';
+import Logo1 from '../../public/images/Dvpt.png'
 
 function Banner() {
   const theme = useTheme();
