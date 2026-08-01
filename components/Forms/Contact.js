@@ -73,16 +73,6 @@ function Contact() {
         }}
         message={<span id="message-id">Message Sent</span>}
       />
-      {!isDesktop && (
-        <div className={cx(classes.logo, classes.logoHeader)}>
-          <Link href={routeLink.education.home}>
-            <img src={logo} alt="logo" />
-            <Typography component="span" className={text.subtitle2}>
-              {brand.education.projectName}
-            </Typography>
-          </Link>
-        </div>
-      )}
       <Container maxWidth="md" className={classes.innerWrap}>
         <IconButton
           href={routeLink.education.home}
