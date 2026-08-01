@@ -11,7 +11,7 @@ import Button from '@mui/material/Button';
 
 function MobileMenu(props) {
   const { classes, cx } = useStyles();
-  const { toggleDrawer, open } = props;
+  const { toggleDrawer, open, onOpenSchedule } = props;
   const { t, i18n } = useTranslation('common');
   const curLang = '/' + i18n.language;
 
@@ -41,10 +41,26 @@ function MobileMenu(props) {
               style={{ animationDuration: index * 0.15 + 's' }}
             >
               <Button component={Link} to={item.toLowerCase()}>
-              <ListItemText primary={item} className={classes.menuList} />
+                <ListItemText primary={item} className={classes.menuList} />
               </Button>
             </ListItem>
           ))}
+          {onOpenSchedule && (
+            <ListItem style={{ marginTop: '16px' }}>
+              <Button
+                variant="contained"
+                color="primary"
+                fullWidth
+                onClick={() => {
+                  toggleDrawer();
+                  onOpenSchedule();
+                }}
+                style={{ borderRadius: '24px', fontWeight: 700 }}
+              >
+                Schedule Tour
+              </Button>
+            </ListItem>
+          )}
         </List>
       </div>
     </div>
@@ -67,6 +83,11 @@ function MobileMenu(props) {
 MobileMenu.propTypes = {
   toggleDrawer: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
+  onOpenSchedule: PropTypes.func
+};
+
+MobileMenu.defaultProps = {
+  onOpenSchedule: null
 };
 
 export default MobileMenu;

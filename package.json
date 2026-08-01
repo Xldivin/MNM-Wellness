@@ -1,18 +1,8 @@
 {
-	"name": "education-theme",
-	"version": "2.4.0",
-	"description": "Luxi ReactJs Education Theme",
-	"keywords": [
-		"education",
-		"learning",
-		"elearning",
-		"course",
-		"academic",
-		"training",
-		"school"
-	],
-	"author": "Luxi Theme",
-	"license": "Envato",
+	"name": "MNM Wellness",
+	"version": "1.0.0",
+	"description": "MNM Wellness",
+	"author": "MNM Wellness",
 	"main": "index.js",
 	"private": true,
 	"scripts": {

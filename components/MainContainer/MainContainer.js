@@ -27,6 +27,7 @@ function MainContainer(props) {
           onToggleDark={onToggleDark}
           onToggleDir={onToggleDir}
           invert={invert}
+          onOpenSchedule={props.onOpenSchedule}
         />
         {children}
         <Footer toggleDir={onToggleDir} invert />

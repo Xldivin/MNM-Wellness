@@ -1,6 +1,5 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import Carousel from 'react-slick';
-import IconButton from '@mui/material/IconButton';
 import { useTranslation } from 'next-i18next';
 import Title from '../Title';
 import TestiCard from '../Cards/Testimonial';
@@ -43,14 +42,13 @@ const testiContent = [
 function Testimonials() {
   const { t } = useTranslation('common');
 
-  const slider = useRef(null);
-  const { classes, cx } = useStyle();
+  const { classes } = useStyle();
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
     autoplay: true,
-    autoplaySpeed: 7000,
+    autoplaySpeed: 3000,
     slidesToShow: 2,
     arrows: false,
     pauseOnHover: true,
@@ -74,7 +72,7 @@ function Testimonials() {
       />
       <div className={classes.sliderWrap}>
         <div className={classes.carousel}>
-          <Carousel ref={slider} {...settings}>
+          <Carousel {...settings}>
             {testiContent.map((item, index) => (
               <div key={index.toString()} className={classes.item}>
                 <TestiCard
@@ -84,20 +82,32 @@ function Testimonials() {
               </div>
             ))}
           </Carousel>
-          <IconButton
-            className={cx(classes.nav, classes.prev)}
-            onClick={() => slider.current.slickPrev()}
-            size="large"
+          <div
+            style={{
+              width: '120px',
+              height: '4px',
+              backgroundColor: 'rgba(0, 188, 212, 0.2)',
+              borderRadius: '2px',
+              margin: '24px auto 0',
+              overflow: 'hidden',
+              position: 'relative'
+            }}
           >
-            <i className="ion-ios-arrow-back" />
-          </IconButton>
-          <IconButton
-            className={cx(classes.nav, classes.next)}
-            onClick={() => slider.current.slickNext()}
-            size="large"
-          >
-            <i className="ion-ios-arrow-forward" />
-          </IconButton>
+            <div
+              style={{
+                height: '100%',
+                backgroundColor: '#00BCD4',
+                borderRadius: '2px',
+                animation: 'slideProgress 3s linear infinite'
+              }}
+            />
+          </div>
+          <style jsx global>{`
+            @keyframes slideProgress {
+              0% { width: 0%; }
+              100% { width: 100%; }
+            }
+          `}</style>
         </div>
       </div>
     </div>

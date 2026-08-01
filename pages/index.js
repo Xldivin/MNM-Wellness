@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { makeStyles } from 'tss-react/mui';
@@ -12,6 +12,12 @@ import Explore from 'components/Explore';
 import Testimonials from 'components/Testimonials';
 import Subscribe from 'components/SubscribeForm';
 import PageNav from 'components/PageNav';
+import FloatingContact from 'components/FloatingContact/FloatingContact';
+import ProgramFinder from 'components/ProgramFinder/ProgramFinder';
+import Stats from 'components/Stats/Stats';
+import Team from 'components/Team/Team';
+import Faq from 'components/Faq/Faq';
+import ScheduleModal from 'components/ScheduleModal/ScheduleModal';
 
 const sectionMargin = margin => (margin * 20);
 const useStyles = makeStyles({ uniqId: 'home' })(theme => ({
@@ -53,6 +59,10 @@ function Landing(props) {
   const { classes } = useStyles();
   const { onToggleDark, onToggleDir } = props;
   const isTablet = useMediaQuery(theme => theme.breakpoints.down('lg'));
+  const [openSchedule, setOpenSchedule] = useState(false);
+
+  const handleOpenSchedule = () => setOpenSchedule(true);
+  const handleCloseSchedule = () => setOpenSchedule(false);
 
   return (
     <Fragment>
@@ -65,25 +75,40 @@ function Landing(props) {
       <MainContainer
         onToggleDark={onToggleDark}
         onToggleDir={onToggleDir}
+        onOpenSchedule={handleOpenSchedule}
       >
         <Fragment>
           <main className={classes.containerWrap}>
             <section id="home">
               <Banner />
             </section>
+
+            <Stats />
+
             <section id="about" className={classes.spaceTopShort}>
               <PopularCourse />
             </section>
+
             <section id="service">
               <Explore />
             </section>
+
+            <ProgramFinder onOpenSchedule={handleOpenSchedule} />
+
+            <Team />
+
             <div id="testimonials" className={classes.spaceTop}>
               <Testimonials />
             </div>
-            <section id="contact" className={classes.spaceTopShort}>
+
+            <Faq />
+
+            <section id="contact" style={{ paddingTop: '20px' }}>
               <Subscribe />
             </section>
           </main>
+          <FloatingContact />
+          <ScheduleModal open={openSchedule} onClose={handleCloseSchedule} />
           {!isTablet && (
             <Fragment>
               <PageNav />

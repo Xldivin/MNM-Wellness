@@ -62,6 +62,7 @@ function Header(props) {
     "About",
     "Service",
     "Testimonials",
+    "FAQ",
     "Contact"
   ]);
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -70,7 +71,7 @@ function Header(props) {
   };
   return (
     <Fragment>
-      {isTablet && (<MobileMenu open={openDrawer} toggleDrawer={handleOpenDrawer} />)}
+      {isTablet && (<MobileMenu open={openDrawer} toggleDrawer={handleOpenDrawer} onOpenSchedule={props.onOpenSchedule} />)}
       <AppBar
         component="div"
         position="relative"
@@ -82,8 +83,50 @@ function Header(props) {
         )}
       >
         <Container fixed={isDesktop}>
-          <div className={classes.headerContent}>
-            <nav className={cx(classes.navLogo, invert && classes.invert)}>
+          <div className={classes.headerContent} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+            {/* Logo on Left */}
+            <div className={classes.logo} style={{ display: 'flex', alignItems: 'center' }}>
+              <Link href="#home">
+                {scrollPosition > 80 ? (
+                  <img src={Logo1} alt="MNM Wellness" style={{ width: '3.2rem', height: '3.2rem' }} />
+                ) : (
+                  <img src={Logo2} alt="MNM Wellness" style={{ width: '3.2rem', height: '3.2rem' }} />
+                )}
+              </Link>
+            </div>
+
+            {/* Menus on Right */}
+            <nav className={cx(classes.navMenu, invert && classes.invert)} style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+              {isDesktop && (
+                <Scrollspy style={{ display: 'flex', alignItems: 'center', margin: 0, padding: 0 }}>
+                  {menuList.map((item, idx) => (
+                    <li key={idx.toString()} style={{ listStyle: 'none' }}>
+                      <Button component={Link} href={`#${item.toLowerCase()}`}>
+                        <span className={classes.text}>
+                          {item}
+                        </span>
+                      </Button>
+                    </li>
+                  ))}
+                </Scrollspy>
+              )}
+              {isDesktop && props.onOpenSchedule && (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={props.onOpenSchedule}
+                  sx={{
+                    borderRadius: '20px',
+                    px: 3,
+                    py: 1,
+                    textTransform: 'none',
+                    fontWeight: 700,
+                    boxShadow: '0 4px 14px rgba(0, 188, 212, 0.3)'
+                  }}
+                >
+                  Schedule Tour
+                </Button>
+              )}
               {isTablet && (
                 <IconButton
                   onClick={handleOpenDrawer}
@@ -94,26 +137,6 @@ function Header(props) {
                     <span className={cx(classes.bar, 'hamburger-inner')} />
                   </span>
                 </IconButton>
-              )}
-            </nav>
-            <nav className={cx(classes.navMenu, invert && classes.invert)}>
-              {isDesktop && (
-                <Scrollspy>
-                  {scrollPosition > 100 ? (
-                    <img src={Logo1} alt="logo1" style={{ width: '3rem', height: "3rem"}} />
-                  ) : (
-                    <img src={Logo2} alt="artwork" style={{ width: '3rem', height: "3rem" }} />
-                  )}
-                  {menuList.map(item => (
-                    <li>
-                      <Button component={Link} to={item.toLowerCase()}>
-                        <span className={classes.text}>
-                          {item}
-                        </span>
-                      </Button>
-                    </li>
-                  ))}
-                </Scrollspy>
               )}
             </nav>
           </div>
