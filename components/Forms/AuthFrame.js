@@ -8,7 +8,6 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import brand from 'public/text/brand';
 import routerLink from 'public/text/link';
-import logo from 'public/images/education-logo.svg';
 import { useText } from 'theme/common';
 import Link from '../Link';
 import useStyles from './form-style';

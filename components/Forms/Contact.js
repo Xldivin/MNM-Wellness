@@ -12,7 +12,6 @@ import Snackbar from '@mui/material/Snackbar';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { useTranslation } from 'next-i18next';
 import brand from 'public/text/brand';
-import logo from 'public/images/education-logo.svg';
 import routeLink from 'public/text/link';
 import { useText } from 'theme/common';
 import Link from '../Link';
