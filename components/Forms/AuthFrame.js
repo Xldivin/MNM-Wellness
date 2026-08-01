@@ -11,7 +11,6 @@ import routerLink from 'public/text/link';
 import { useText } from 'theme/common';
 import Link from '../Link';
 import useStyles from './form-style';
-
 function AuthFrame(props) {
   const { classes, cx } = useStyles();
   const { classes: text } = useText();

@@ -11,8 +11,6 @@ import routeLink from 'public/text/link';
 import { useText } from 'theme/common';
 import SocialAuth from './SocialAuth';
 import Link from '../Link';
-import Title from '../Title';
-import AuthFrame from './AuthFrame';
 import useStyles from './form-style';
 
 function Login() {
@@ -50,7 +48,7 @@ function Login() {
   };
 
   return (
-    <AuthFrame title={t('login_title')} subtitle={t('login_subtitle')}>
+
       <div>
         <div className={classes.head}>
           <Title
@@ -129,7 +127,7 @@ function Login() {
           </div>
         </ValidatorForm>
       </div>
-    </AuthFrame>
+
   );
 }
 

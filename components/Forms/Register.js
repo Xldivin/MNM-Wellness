@@ -12,7 +12,6 @@ import SocialAuth from './SocialAuth';
 import Title from '../Title';
 import Link from '../Link';
 import Checkbox from './Checkbox';
-import AuthFrame from './AuthFrame';
 import useStyles from './form-style';
 
 function Register() {
@@ -53,7 +52,7 @@ function Register() {
   };
 
   return (
-    <AuthFrame title={t('register_title')} subtitle={t('register_subtitle')}>
+
       <div>
         <div className={classes.head}>
           <Title
@@ -155,7 +154,6 @@ function Register() {
           </div>
         </ValidatorForm>
       </div>
-    </AuthFrame>
   );
 }
 
