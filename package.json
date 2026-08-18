@@ -5,6 +5,9 @@
 	"author": "MNM Wellness",
 	"main": "index.js",
 	"private": true,
+	"engines": {
+		"node": "24.x"
+	},
 	"scripts": {
 		"dev": "next dev -p 3011",
 		"build": "next build",
